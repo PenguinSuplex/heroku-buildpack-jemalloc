@@ -9,16 +9,16 @@ ENV_DIR=$3
 
 url="https://github.com/jemalloc/jemalloc/releases/download/5.1.0/jemalloc-5.1.0.tar.bz2"
 dest="$BUILD_DIR/vendor/jemalloc"
+build=`mktemp -d`
 
 echo "-----> Vendoring jemalloc"
 echo "       Fetching $url"
 
-mkdir -p $dest
-curl -sL $url | tar -C $dest -xj --strip-components=1
+curl -sL $url | tar -C $build -xj --strip-components=1
 
-cd $dest
+cd $build
 
-./configure --enable-prof --prefix=/app/vendor/jemalloc
+./configure --enable-prof --prefix=$dest
 make
 make install
 
