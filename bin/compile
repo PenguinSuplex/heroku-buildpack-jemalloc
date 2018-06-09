@@ -16,6 +16,10 @@ echo "       Fetching $url"
 
 curl -sL $url | tar -C $build -xj --strip-components=1
 
+echo "-----> Building jemalloc"
+echo "       Using folder $build"
+echo "       Installing to $dest"
+
 cd $build
 
 ./configure --enable-prof --prefix=$dest
@@ -26,11 +30,15 @@ export LD_PRELOAD="/app/vendor/jemalloc/lib/libjemalloc.so $LD_PRELOAD"
 
 cd
 
+echo "-----> Building binutils"
+echo "       Fetching $url"
+
 url="http://ftp.gnu.org/gnu/binutils/binutils-2.30.tar.gz"
 build=`mktemp -d`
 
 curl -sL $url | tar -C $build -xz --strip-components=1
 
+echo "       Using folder $build"
 cd $build
 ./configure
 make
