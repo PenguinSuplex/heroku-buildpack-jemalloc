@@ -44,5 +44,10 @@ cd $build
 make
 make install
 
+echo "-----> Building runtime environment"
+mkdir -p $BUILD_DIR/.profile.d
 
+cat <<'EOF' > $BUILD_DIR/.profile.d/jemalloc.sh
+export PATH="$PATH:/app/vendor/jemalloc/bin:/app/vendor/binutils/bin"
 export LD_PRELOAD="/app/vendor/jemalloc/lib/libjemalloc.so $LD_PRELOAD"
+EOF
