@@ -23,3 +23,15 @@ make
 make install
 
 export LD_PRELOAD="/app/vendor/jemalloc/lib/libjemalloc.so $LD_PRELOAD"
+
+cd
+
+url="http://ftp.gnu.org/gnu/binutils/binutils-2.30.tar.gz"
+build=`mktemp -d`
+
+curl -sL $url | tar -C $build -xz --strip-components=1
+
+cd $build
+./configure
+make
+make install
