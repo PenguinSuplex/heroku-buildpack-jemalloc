@@ -35,11 +35,13 @@ echo "       Fetching $url"
 
 url="http://ftp.gnu.org/gnu/binutils/binutils-2.30.tar.gz"
 build=`mktemp -d`
+dest=/app/vendor/binutils
 
 curl -sL $url | tar -C $build -xz --strip-components=1
 
 echo "       Using folder $build"
+echo "       Installing to $dest"
 cd $build
-./configure
+./configure --prefix=$dest
 make
 make install
