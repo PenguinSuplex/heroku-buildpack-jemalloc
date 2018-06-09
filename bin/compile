@@ -26,8 +26,6 @@ cd $build
 make
 make install
 
-export LD_PRELOAD="/app/vendor/jemalloc/lib/libjemalloc.so $LD_PRELOAD"
-
 cd
 
 echo "-----> Building binutils"
@@ -45,3 +43,6 @@ cd $build
 ./configure --prefix=$dest
 make
 make install
+
+
+export LD_PRELOAD="/app/vendor/jemalloc/lib/libjemalloc.so $LD_PRELOAD"
